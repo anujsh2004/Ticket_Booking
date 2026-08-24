@@ -3,7 +3,7 @@ services:
   - type: web
     name: slowmo-backend
     runtime: docker
-    dockerContext: ./backend
+    dockerContext: .
     dockerfilePath: ./backend/Dockerfile
     plan: free
     region: oregon
