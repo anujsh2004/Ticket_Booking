@@ -16,16 +16,6 @@ services:
         fromDatabase:
           name: slowmo-postgres
           property: connectionString
-      - key: REDIS_HOST
-        fromService:
-          type: redis
-          name: slowmo-redis
-          property: host
-      - key: REDIS_PORT
-        fromService:
-          type: redis
-          name: slowmo-redis
-          property: port
       - key: JWT_SECRET
         generateValue: true
       - key: EMAIL_PROVIDER
