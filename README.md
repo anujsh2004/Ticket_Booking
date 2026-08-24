@@ -1,6 +1,15 @@
 # 🎟️ Ticket Booking System
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-slowmotickets.vercel.app-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://slowmotickets.vercel.app/)
+[![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://openjdk.org/)
+[![Spring Boot](https://img.shields.io/badge/Spring_Boot-3.4.3-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)](https://spring.io/projects/spring-boot)
+[![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
+[![Redis](https://img.shields.io/badge/Redis-7-DC382D?style=for-the-badge&logo=redis&logoColor=white)](https://redis.io/)
+
 A production-grade, concurrency-safe ticket booking platform for movies and concerts built with **Java Spring Boot 3**, **PostgreSQL**, **Redis**, **WebSocket/STOMP**, **ZXing**, and **React**.
+
+> 🌐 **Live Demo:** [https://slowmotickets.vercel.app/](https://slowmotickets.vercel.app/)
 
 ---
 
