@@ -37,4 +37,4 @@ databases:
     plan: free
     region: oregon
     databaseName: ticket_booking_db
-    user: postgres
+    user: slowmo_user
