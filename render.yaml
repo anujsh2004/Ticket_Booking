@@ -4,7 +4,7 @@ services:
     name: slowmo-backend
     runtime: docker
     dockerContext: .
-    dockerfilePath: ./backend/Dockerfile
+    dockerfilePath: Dockerfile
     plan: free
     region: oregon
     envVars:

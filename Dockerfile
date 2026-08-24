@@ -1,11 +1,15 @@
+# Root Dockerfile for Render / Cloud Platforms
 FROM maven:3.9.9-eclipse-temurin-21-alpine AS build
 WORKDIR /app
 
-COPY pom.xml .
-COPY src ./src
+# Copy pom.xml and source code from backend directory
+COPY backend/pom.xml ./pom.xml
+COPY backend/src ./src
 
+# Build production jar skipping tests
 RUN mvn clean package -DskipTests
 
+# Runtime stage
 FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 
