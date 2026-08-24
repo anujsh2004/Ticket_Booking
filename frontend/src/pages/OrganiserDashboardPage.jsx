@@ -26,9 +26,9 @@ export default function OrganiserDashboardPage() {
     startTime: '',
     endTime: '',
     venueId: '',
-    vipPrice: '180.00',
-    premiumPrice: '95.00',
-    standardPrice: '45.00',
+    vipPrice: '1200.00',
+    premiumPrice: '650.00',
+    standardPrice: '350.00',
   });
 
   const [msg, setMsg] = useState({ type: '', text: '' });
@@ -145,7 +145,7 @@ export default function OrganiserDashboardPage() {
             <div>
               <span className="text-xs text-slate-400">Total Revenue</span>
               <p className="text-2xl font-black text-white mt-0.5">
-                ${Number(stats?.totalRevenue || 0).toFixed(2)}
+                ₹{Number(stats?.totalRevenue || 0).toFixed(2)}
               </p>
             </div>
           </div>
@@ -262,7 +262,7 @@ export default function OrganiserDashboardPage() {
                       <td className="p-3">
                         {b.seats?.map((s) => `${s.rowNumber}${s.seatNumber}`).join(', ')}
                       </td>
-                      <td className="p-3 font-bold text-emerald-400">${Number(b.totalAmount).toFixed(2)}</td>
+                      <td className="p-3 font-bold text-emerald-400">₹{Number(b.totalAmount).toFixed(2)}</td>
                       <td className="p-3">
                         <span
                           className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
@@ -409,7 +409,7 @@ export default function OrganiserDashboardPage() {
 
               {/* Category Pricing Configurator */}
               <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-3">
-                <span className="font-bold text-slate-300 block">Category Tier Pricing ($)</span>
+                <span className="font-bold text-slate-300 block">Category Tier Pricing (₹)</span>
                 <div className="grid grid-cols-3 gap-3">
                   <div>
                     <label className="text-[10px] text-purple-400 font-bold block mb-1">VIP Tier</label>

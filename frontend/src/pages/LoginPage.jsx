@@ -47,7 +47,7 @@ export default function LoginPage() {
             <Ticket className="w-6 h-6 text-white" />
           </div>
           <h2 className="text-3xl font-extrabold text-white tracking-tight">Welcome Back</h2>
-          <p className="text-xs text-slate-400 mt-1">Sign in to your SeatPulse account</p>
+          <p className="text-xs text-slate-400 mt-1">Sign in to your SlowMO account</p>
         </div>
 
         {/* Form Container */}

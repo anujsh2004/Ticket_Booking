@@ -152,7 +152,7 @@ export default function MyWaitlistsPage() {
                           className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold shadow-lg shadow-emerald-600/30 transition-all hover:scale-105 flex items-center justify-center space-x-2"
                         >
                           <CheckCircle2 className="w-4 h-4" />
-                          <span>Claim Seat {entry.activeOffer.seatRow}{entry.activeOffer.seatNumber} (${Number(entry.activeOffer.price).toFixed(2)})</span>
+                          <span>Claim Seat {entry.activeOffer.seatRow}{entry.activeOffer.seatNumber} (₹{Number(entry.activeOffer.price).toFixed(2)})</span>
                         </button>
                       </div>
                     ) : (

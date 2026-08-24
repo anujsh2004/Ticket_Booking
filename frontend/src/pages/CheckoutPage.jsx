@@ -127,7 +127,7 @@ export default function CheckoutPage() {
                             {seat.categoryName}
                           </span>
                         </div>
-                        <span className="font-extrabold text-indigo-400">${Number(seat.price).toFixed(2)}</span>
+                        <span className="font-extrabold text-indigo-400">₹{Number(seat.price).toFixed(2)}</span>
                       </div>
                     ))}
                   </div>
@@ -145,7 +145,7 @@ export default function CheckoutPage() {
                         💳
                       </div>
                       <div>
-                        <p className="text-xs font-bold text-white">Instant Sandbox Payment</p>
+                        <p className="text-xs font-bold text-white">Instant Sandbox UPI / Card Payment</p>
                         <p className="text-[10px] text-slate-400">Zero charges • Auto-confirms order</p>
                       </div>
                     </div>
@@ -162,7 +162,7 @@ export default function CheckoutPage() {
                   <div className="space-y-2 text-xs pb-4 border-b border-slate-800">
                     <div className="flex justify-between text-slate-400">
                       <span>Seats ({heldSeats.length}):</span>
-                      <span>${Number(totalAmount).toFixed(2)}</span>
+                      <span>₹{Number(totalAmount).toFixed(2)}</span>
                     </div>
                     <div className="flex justify-between text-slate-400">
                       <span>Booking Fee:</span>
@@ -173,7 +173,7 @@ export default function CheckoutPage() {
                   <div className="flex justify-between items-baseline pt-2">
                     <span className="text-xs font-bold text-slate-300">Amount Due:</span>
                     <span className="text-2xl font-black text-indigo-400">
-                      ${Number(totalAmount).toFixed(2)}
+                      ₹{Number(totalAmount).toFixed(2)}
                     </span>
                   </div>
 

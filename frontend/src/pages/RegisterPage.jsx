@@ -39,7 +39,7 @@ export default function RegisterPage() {
             <Ticket className="w-6 h-6 text-white" />
           </div>
           <h2 className="text-3xl font-extrabold text-white tracking-tight">Create Account</h2>
-          <p className="text-xs text-slate-400 mt-1">Join SeatPulse for instant event reservations</p>
+          <p className="text-xs text-slate-400 mt-1">Join SlowMO for instant event reservations</p>
         </div>
 
         <div className="glass-panel-glow p-8 rounded-3xl border border-slate-800 space-y-6">

@@ -146,9 +146,9 @@ public class DataInitializer implements CommandLineRunner {
         List<ShowSeat> showSeats1 = new ArrayList<>();
         for (Seat s : seatsVenue1) {
             BigDecimal price = switch (s.getCategory().getName()) {
-                case "VIP" -> BigDecimal.valueOf(180.00);
-                case "PREMIUM" -> BigDecimal.valueOf(95.00);
-                default -> BigDecimal.valueOf(45.00);
+                case "VIP" -> BigDecimal.valueOf(850.00);
+                case "PREMIUM" -> BigDecimal.valueOf(450.00);
+                default -> BigDecimal.valueOf(220.00);
             };
             showSeats1.add(ShowSeat.builder()
                     .show(movieShow)
@@ -170,9 +170,9 @@ public class DataInitializer implements CommandLineRunner {
         List<ShowSeat> showSeats2 = new ArrayList<>();
         for (Seat s : seatsVenue2) {
             BigDecimal price = switch (s.getCategory().getName()) {
-                case "VIP" -> BigDecimal.valueOf(350.00);
-                case "PREMIUM" -> BigDecimal.valueOf(180.00);
-                default -> BigDecimal.valueOf(75.00);
+                case "VIP" -> BigDecimal.valueOf(2500.00);
+                case "PREMIUM" -> BigDecimal.valueOf(1400.00);
+                default -> BigDecimal.valueOf(650.00);
             };
             showSeats2.add(ShowSeat.builder()
                     .show(concertShow)

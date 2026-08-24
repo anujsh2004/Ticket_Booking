@@ -82,7 +82,7 @@ export default function SeatMap({ seats, selectedSeatIds, onToggleSeat, currentU
                     type="button"
                     disabled={!isClickable}
                     onClick={() => onToggleSeat(seat)}
-                    title={`Row ${seat.rowNumber}, Seat ${seat.seatNumber} (${seat.categoryName}) - $${seat.price} [${seat.status}]`}
+                    title={`Row ${seat.rowNumber}, Seat ${seat.seatNumber} (${seat.categoryName}) - ₹${seat.price} [${seat.status}]`}
                     className={`relative w-8 h-8 sm:w-9 sm:h-9 rounded-lg border flex flex-col items-center justify-center text-[10px] font-bold transition-all duration-150 ${getSeatColor(
                       seat
                     )}`}

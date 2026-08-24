@@ -49,7 +49,7 @@ public class EmailService {
             log.info("Subject: Your Ticket is Confirmed — {}", bookingReference);
             log.info("Dear {}, your booking for '{}' at '{}' on {} is confirmed!", customerName, eventTitle, venueName, showTime);
             log.info("Seats: {}", String.join(", ", seatLabels));
-            log.info("Total Paid: ${}", totalAmount);
+            log.info("Total Paid: ₹{}", totalAmount);
             log.info("Booking Reference: {}", bookingReference);
             log.info("=============================================================");
             return;
@@ -65,7 +65,7 @@ public class EmailService {
 
             String htmlBody = String.format("""
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
-                    <h2 style="color: #4F46E5;">Booking Confirmation</h2>
+                    <h2 style="color: #4F46E5;">Booking Confirmation — SlowMO</h2>
                     <p>Dear <strong>%s</strong>,</p>
                     <p>Your booking for <strong>%s</strong> is confirmed!</p>
                     <div style="background-color: #F3F4F6; padding: 15px; border-radius: 6px; margin: 20px 0;">
@@ -73,13 +73,13 @@ public class EmailService {
                         <p><strong>Venue:</strong> %s</p>
                         <p><strong>Show Time:</strong> %s</p>
                         <p><strong>Seats:</strong> %s</p>
-                        <p><strong>Total Amount:</strong> $%s</p>
+                        <p><strong>Total Amount:</strong> ₹%s</p>
                     </div>
                     <div style="text-align: center; margin: 25px 0;">
                         <p><strong>Scan QR Code at Entry:</strong></p>
                         <img src="cid:qrCodeImage" alt="Ticket QR Code" style="width: 200px; height: 200px;" />
                     </div>
-                    <p style="color: #6B7280; font-size: 12px; text-align: center;">Thank you for booking with Ticket Booking System.</p>
+                    <p style="color: #6B7280; font-size: 12px; text-align: center;">Thank you for booking with SlowMO.</p>
                 </div>
             """, customerName, eventTitle, bookingReference, venueName, showTime, String.join(", ", seatLabels), totalAmount);
 
@@ -129,7 +129,7 @@ public class EmailService {
 
             String htmlBody = String.format("""
                 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;">
-                    <h2 style="color: #10B981;">Good News! A Seat is Available</h2>
+                    <h2 style="color: #10B981;">Good News! A Seat is Available — SlowMO</h2>
                     <p>Dear <strong>%s</strong>,</p>
                     <p>A seat has just become available for <strong>%s</strong> in your requested category (<strong>%s</strong> - Seat %s).</p>
                     <p>You have <strong>%d minutes</strong> to claim this seat before it is offered to the next person in the waitlist.</p>

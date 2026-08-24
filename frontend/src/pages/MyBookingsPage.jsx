@@ -157,7 +157,7 @@ export default function MyBookingsPage() {
                         Total Paid
                       </span>
                       <span className="text-lg font-black text-indigo-400">
-                        ${Number(booking.totalAmount).toFixed(2)}
+                        ₹{Number(booking.totalAmount).toFixed(2)}
                       </span>
                     </div>
 

@@ -280,7 +280,7 @@ export default function SeatSelectionPage() {
                 Total Price
               </span>
               <div className="text-lg font-extrabold text-indigo-400">
-                ${totalAmount.toFixed(2)}
+                ₹{totalAmount.toFixed(2)}
               </div>
             </div>
           </div>

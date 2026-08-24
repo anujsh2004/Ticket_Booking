@@ -22,8 +22,8 @@ export default function Navbar() {
               <Ticket className="w-5 h-5 text-white" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
-                SeatPulse
+              <span className="text-lg font-extrabold tracking-tight bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">
+                SlowMO
               </span>
               <span className="text-[10px] text-indigo-400 font-semibold tracking-widest uppercase">
                 Ticket Platform
