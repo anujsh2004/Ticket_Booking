@@ -109,11 +109,11 @@
 			<version>${zxing.version}</version>
 		</dependency>
 
-		<!-- In-memory H2 database for unit and integration testing -->
+		<!-- In-memory H2 database for unit testing and instant dev mode -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<scope>test</scope>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- Testing -->
