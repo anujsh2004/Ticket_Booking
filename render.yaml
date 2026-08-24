@@ -1,0 +1,40 @@
+services:
+  # Spring Boot Backend Web Service
+  - type: web
+    name: slowmo-backend
+    runtime: docker
+    dockerContext: ./backend
+    dockerfilePath: ./backend/Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: SERVER_PORT
+        value: 8080
+      - key: SPRING_PROFILES_ACTIVE
+        value: postgres
+      - key: DATABASE_URL
+        fromDatabase:
+          name: slowmo-postgres
+          property: connectionString
+      - key: REDIS_HOST
+        fromService:
+          type: redis
+          name: slowmo-redis
+          property: host
+      - key: REDIS_PORT
+        fromService:
+          type: redis
+          name: slowmo-redis
+          property: port
+      - key: JWT_SECRET
+        generateValue: true
+      - key: EMAIL_PROVIDER
+        value: mock
+
+databases:
+  # Managed PostgreSQL Database
+  - name: slowmo-postgres
+    plan: free
+    region: oregon
+    databaseName: ticket_booking_db
+    user: postgres

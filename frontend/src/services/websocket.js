@@ -13,11 +13,19 @@ export class WebSocketClient {
     try {
       this.client = new Client({
         webSocketFactory: () => {
+          const backendBase = import.meta.env.VITE_API_URL
+            ? import.meta.env.VITE_API_URL.replace(/\/+$/, '')
+            : '';
+          const wsEndpoint = backendBase ? `${backendBase}/ws` : '/ws';
+
           try {
-            return new SockJS('/ws');
+            return new SockJS(wsEndpoint);
           } catch (e) {
-            const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-            return new WebSocket(`${protocol}//${window.location.host}/ws`);
+            const host = backendBase
+              ? backendBase.replace(/^https?:\/\//, '')
+              : window.location.host;
+            const protocol = (backendBase ? backendBase.startsWith('https') : window.location.protocol === 'https:') ? 'wss:' : 'ws:';
+            return new WebSocket(`${protocol}//${host}/ws`);
           }
         },
         reconnectDelay: 5000,
