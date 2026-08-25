@@ -6,6 +6,7 @@ const API_BASE = cleanBase ? `${cleanBase}/api` : '/api';
 
 const api = axios.create({
   baseURL: API_BASE,
+  timeout: 30000, // 30 seconds timeout
   headers: {
     'Content-Type': 'application/json',
   },
@@ -27,12 +28,24 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response.data,
   (error) => {
+    if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+      return Promise.reject(
+        new Error('Server took too long to respond. It may be waking up from sleep mode—please try again.')
+      );
+    }
+    if (!error.response && error.request) {
+      return Promise.reject(
+        new Error('Unable to connect to the backend server. It may still be booting up.')
+      );
+    }
     const message =
       error.response?.data?.message ||
       error.response?.data?.error ||
+      error.message ||
       'An unexpected error occurred';
     return Promise.reject(new Error(message));
   }
 );
 
 export default api;
+

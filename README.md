@@ -87,6 +87,27 @@ The backend will automatically start on `http://localhost:8080` and seed initial
 
 ---
 
+## ☁️ Cloud Deployment (Singapore Region)
+
+The project is pre-configured with Infrastructure-as-Code in `render.yaml` for sub-50ms ultra-low latency in Asia/India/Southeast Asia.
+
+### 1. Backend & PostgreSQL on Render (Singapore)
+1. Go to [Render Dashboard](https://dashboard.render.com/) $\rightarrow$ Click **New +** $\rightarrow$ Select **Blueprint**.
+2. Connect your `Ticket_Booking` repository. Render will detect `render.yaml`.
+3. Click **Apply**:
+   - Spawns `slowmo-backend` Docker Web Service in `singapore`.
+   - Spawns `slowmo-postgres` Managed Database in `singapore`.
+   - Automatically injects internal PostgreSQL connection string and environment variables.
+
+### 2. Frontend on Vercel
+1. Import repository to [Vercel](https://vercel.com/) with root directory set to `frontend`.
+2. Add the Environment Variable:
+   - `VITE_API_URL` = `https://your-singapore-backend-name.onrender.com`
+3. Click **Deploy**.
+
+---
+
+
 ## 🧪 Running Automated Tests
 
 Run the complete test suite including concurrency and waitlist lifecycle tests:

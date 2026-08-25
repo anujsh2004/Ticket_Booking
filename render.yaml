@@ -6,7 +6,8 @@ services:
     dockerContext: .
     dockerfilePath: Dockerfile
     plan: free
-    region: oregon
+    region: singapore
+    healthCheckPath: /
     envVars:
       - key: SERVER_PORT
         value: 8080
@@ -20,11 +21,14 @@ services:
         generateValue: true
       - key: EMAIL_PROVIDER
         value: mock
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:+TieredCompilation -XX:TieredStopAtLevel=1"
 
 databases:
   # Managed PostgreSQL Database
   - name: slowmo-postgres
     plan: free
-    region: oregon
+    region: singapore
     databaseName: ticket_booking_db
     user: slowmo_user
+

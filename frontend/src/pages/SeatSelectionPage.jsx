@@ -183,6 +183,27 @@ export default function SeatSelectionPage() {
     );
   }
 
+  if (!show) {
+    return (
+      <div className="max-w-5xl mx-auto px-4 py-20 text-center glass-panel rounded-2xl">
+        <h2 className="text-xl font-bold text-white">Unable to load seating map</h2>
+        <p className="text-sm text-slate-400 mt-2">{errorMsg || 'The server may be warming up. Please try again.'}</p>
+        <div className="mt-6 flex items-center justify-center space-x-4">
+          <button
+            onClick={fetchShowAndSeats}
+            className="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold shadow-lg shadow-indigo-600/30 transition-all hover:scale-105"
+          >
+            Retry Loading
+          </button>
+          <Link to="/" className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold border border-slate-700 transition-all">
+            Return to Events
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+
   return (
     <div className="min-h-screen bg-slate-950 pb-32">
       {/* Top Sticky Header */}

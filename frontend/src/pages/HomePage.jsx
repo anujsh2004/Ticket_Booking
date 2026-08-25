@@ -1,21 +1,36 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import api from '../services/api';
-import { Search, Film, Music, MapPin, Calendar, ArrowRight, Sparkles, TrendingUp } from 'lucide-react';
+import { Search, Film, Music, MapPin, Calendar, ArrowRight, Sparkles, TrendingUp, RefreshCw, AlertCircle, Server } from 'lucide-react';
 
 export default function HomePage() {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isWakingUp, setIsWakingUp] = useState(false);
+  const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
   const [selectedType, setSelectedType] = useState('');
+  const wakingTimerRef = useRef(null);
 
   useEffect(() => {
     fetchEvents();
+    return () => {
+      if (wakingTimerRef.current) clearTimeout(wakingTimerRef.current);
+    };
   }, [search, selectedType]);
 
   const fetchEvents = async () => {
     try {
       setLoading(true);
+      setError(null);
+      setIsWakingUp(false);
+
+      // If backend takes longer than 3.5s to respond, show warming-up notice
+      if (wakingTimerRef.current) clearTimeout(wakingTimerRef.current);
+      wakingTimerRef.current = setTimeout(() => {
+        setIsWakingUp(true);
+      }, 3500);
+
       const params = {};
       if (search) params.search = search;
       if (selectedType) params.type = selectedType;
@@ -24,10 +39,14 @@ export default function HomePage() {
       setEvents(res.data || []);
     } catch (err) {
       console.error('Failed to fetch events:', err);
+      setError(err.message || 'Unable to connect to the backend server.');
     } finally {
+      if (wakingTimerRef.current) clearTimeout(wakingTimerRef.current);
+      setIsWakingUp(false);
       setLoading(false);
     }
   };
+
 
   return (
     <div className="min-h-screen bg-slate-950 pb-20">
@@ -116,13 +135,46 @@ export default function HomePage() {
           </div>
         </div>
 
+        {/* Server Waking Up Notice */}
+        {isWakingUp && (
+          <div className="mb-8 p-4 rounded-2xl bg-indigo-950/60 border border-indigo-500/30 flex items-center justify-between gap-4 animate-pulse">
+            <div className="flex items-center space-x-3">
+              <div className="p-2 rounded-xl bg-indigo-600/20 text-indigo-400">
+                <Server className="w-5 h-5 animate-spin" />
+              </div>
+              <div>
+                <h4 className="text-xs font-bold text-indigo-200">Cloud Backend Starting Up</h4>
+                <p className="text-[11px] text-indigo-300/80 mt-0.5">
+                  Free-tier instances spin down during inactivity and take ~30–50s to warm up. Please wait a moment...
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Error / Connection Issue */}
+        {error && !loading && (
+          <div className="mb-8 p-6 rounded-2xl bg-rose-950/40 border border-rose-500/30 text-center glass-panel">
+            <AlertCircle className="w-10 h-10 text-rose-400 mx-auto mb-2" />
+            <h3 className="text-sm font-bold text-white">Connection Delay</h3>
+            <p className="text-xs text-rose-300/80 mt-1 max-w-md mx-auto">{error}</p>
+            <button
+              onClick={fetchEvents}
+              className="mt-4 px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-semibold inline-flex items-center space-x-2 shadow-lg shadow-indigo-600/30 transition-all hover:scale-105"
+            >
+              <RefreshCw className="w-3.5 h-3.5" />
+              <span>Retry Connection</span>
+            </button>
+          </div>
+        )}
+
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((n) => (
               <div key={n} className="h-96 rounded-2xl bg-slate-900/60 animate-pulse border border-slate-800"></div>
             ))}
           </div>
-        ) : events.length === 0 ? (
+        ) : events.length === 0 && !error ? (
           <div className="text-center py-20 glass-panel rounded-2xl">
             <Film className="w-12 h-12 text-slate-600 mx-auto mb-3" />
             <h3 className="text-lg font-bold text-white">No events found</h3>
@@ -130,6 +182,7 @@ export default function HomePage() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
             {events.map((event) => (
               <div
                 key={event.id}

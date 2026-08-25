@@ -9,19 +9,38 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isMounted = true;
     if (token) {
-      api.get('/auth/me')
+      // Revalidate token with a 6-second timeout so cold starts don't freeze public browsing
+      const source = new AbortController();
+      const timeoutId = setTimeout(() => source.abort(), 6000);
+
+      api.get('/auth/me', { signal: source.signal })
         .then((res) => {
-          setUser(res.data);
+          if (isMounted) {
+            setUser(res.data);
+          }
         })
         .catch(() => {
-          logout();
+          if (isMounted) {
+            logout();
+          }
         })
-        .finally(() => setLoading(false));
+        .finally(() => {
+          clearTimeout(timeoutId);
+          if (isMounted) {
+            setLoading(false);
+          }
+        });
     } else {
       setLoading(false);
     }
+
+    return () => {
+      isMounted = false;
+    };
   }, [token]);
+
 
   const login = async (email, password) => {
     const res = await api.post('/auth/login', { email, password });
